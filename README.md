@@ -1,4 +1,4 @@
-# Intern Task
+# Intern Assignment
 
 This is a task given to my internship as a backend intern in fullthrottle labs
 

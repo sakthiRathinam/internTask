@@ -36,7 +36,7 @@ def users(request):
 def get_user(request,id):
 	userr=user.objects.get(id=id)
 	activitys=userr.activity_set.all()
-	context={'user':userr,'activity':activitys,'users':users}
+	context={'user':userr,'activity':activitys,}
 	return render(request, 'html/customerView.html',context)
 #this is the api to get all the users and their activity periods 
 class UserModelViewSet(viewsets.ModelViewSet):

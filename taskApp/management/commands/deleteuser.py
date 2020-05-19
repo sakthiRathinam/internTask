@@ -8,5 +8,5 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         User.objects.all().delete()
-        return 'users deleted'
+        return 'all users deleted successfully'
         

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-5">
+      <h5 class="font-weight-bolder">Customers</h5>
+      <hr>
+      <div class="card card-body">
+        <table class="table table-sm">
+          <tr>
+            <th>customers</th>
+            <th>phone</th>
+            <th>Inspect</th>
+          </tr>
+          {% for i in users %}
+          <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.timezone}}</td>
+            <td><a class="btn btn-sm btn-info" href="{% url 'customer' i.id %}">view</a></td>
+          </tr>
+          {% endfor %}
+        </table>
+        <a class="btn btn-primary btn-sm btn-block" href="{% url 'form' %}">create user</a>
+      </div>
+    </div>
+</div>
+{% endblock content %}

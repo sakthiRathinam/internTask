@@ -11,6 +11,16 @@ from .forms import *
 import json
 from django.contrib import messages
 import datetime
+from django.contrib.auth import authenticate,login,logout
+#homePage
+def home(request):
+	context={}
+	return render(request,'base.html',context)
+#for customer dashboard data
+def customerDashboard(request):
+	users=user.objects.all()
+	context={'users':users}
+	return render(request,'html/customerDashboard.html',context)
 #this is the function for get all the users and their activity period
 def users(request):
 	l=[]
@@ -23,11 +33,11 @@ def users(request):
 	print(l)
 	return render(request, 'html/index.html',context)
 #this is the function to get the specific user and their activity period
-def get_user(request,pk):
-	userr=user.objects.get(id=pk)
+def get_user(request,id):
+	userr=user.objects.get(id=id)
 	activitys=userr.activity_set.all()
-	context={'user':userr,'activity':activitys}
-	return render(request, 'html/index.html',context)
+	context={'user':userr,'activity':activitys,'users':users}
+	return render(request, 'html/customerView.html',context)
 #this is the api to get all the users and their activity periods 
 class UserModelViewSet(viewsets.ModelViewSet):
 	serializer_class=ActivitySerializer
@@ -52,7 +62,7 @@ def loginPage(request):
 		user=authenticate(request,username=username,password=password)
 		if user is not None:
 			login(request,user)
-			return redirect('customerCreate')
+			return redirect('home')
 		else:
 			messages.info(request,'Username or password is incorrect')
 	context={}
@@ -61,3 +71,17 @@ def loginPage(request):
 def logoutUser(request):
 	logout(request)
 	return redirect('login')
+#for customer creation
+def customerCreate(request):
+	form=CustomerForm()
+	if request.method=="POST":
+		form=CustomerForm(request.POST)
+		if form.is_valid():
+			form.save()
+			return redirect('home')
+	context={'form':form}
+	return render(request,'html/createuser.html',context)
+#for api dynamic routing
+def api(request):
+	context={}
+	return render(request,'html/api.html',context)

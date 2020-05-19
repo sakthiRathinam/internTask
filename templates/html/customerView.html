@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+	<div class="col-md-3">
+		<div class="card card-body">
+			<h3 style="text-align: center">customer information</h3>
+			<hr>
+			<h5>name :{{user.name}}</h5>
+			<h5>id :{{user.IDD}}</h5>
+			<h5>timezone: {{user.timezone}}</h5>
+			<hr>
+			<a class="btn btn-warning" href="{% url 'dashboard' %}"> &#8592; customer view</a>
+		</div>
+	</div>
+	<div class="col-md-5">
+		<div class="card">
+			<div class="card-body">
+				<h2>Activity periods</h2>
+				<hr>
+				{% for i in activity %}
+				<h5>start time:{{i.start_time}}</h5>
+				<h5>end time :{{i.end_time}}</h5>
+				<hr>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}

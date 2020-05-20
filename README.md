@@ -17,5 +17,5 @@ This is a simple site where you can create a customer and view the customers the
 # deployment
 
 I deployed it in ngrok tunnel here is the link  https://d8590fff.ngrok.io
-I deployed it in heroku link is https://interntaskkk.herokuapp.com/
+I deployed it in heroku link is https://interntass.herokuapp.com/
 
